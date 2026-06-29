@@ -37,14 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!dropdown) return;
     var link = item.querySelector('.nav-link');
 
-    link.addEventListener('click', function (e) {
-      if (window.innerWidth <= 1180) return;
-      var isOpen = item.classList.contains('is-open');
-      if (!isOpen) {
-        e.preventDefault();
-        document.querySelectorAll('.category-nav .nav-item.is-open').forEach(function (i) { i.classList.remove('is-open'); });
-        item.classList.add('is-open');
-      }
+    link.addEventListener('click', function () {
+      document.querySelectorAll('.category-nav .nav-item.is-open').forEach(function (i) { i.classList.remove('is-open'); });
     });
   });
 
