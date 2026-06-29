@@ -339,17 +339,27 @@ h1,h2,h3,h4{
 .mobile-nav-body{ padding:10px 14px 40px; }
 .m-group{ border-bottom:1px solid var(--line); }
 .m-group-head{
-  width:100%;
   display:flex; align-items:center; justify-content:space-between;
-  background:none; border:none;
+  width:100%;
+}
+.m-group-link{
+  flex:1;
   padding:16px 8px;
   font-family:var(--f-display);
   font-weight:600;
   font-size:15.5px;
   color:var(--ink);
 }
-.m-group-head svg{ width:14px; height:14px; transition:transform .15s ease; color:var(--slate-soft); }
-.m-group.is-open .m-group-head svg{ transform:rotate(180deg); }
+.m-group-link:hover{ color:var(--navy); }
+.m-group-toggle{
+  background:none; border:none;
+  padding:16px 8px;
+  cursor:pointer;
+  display:flex; align-items:center;
+  flex-shrink:0;
+}
+.m-group-toggle svg{ width:14px; height:14px; transition:transform .15s ease; color:var(--slate-soft); }
+.m-group.is-open .m-group-toggle svg{ transform:rotate(180deg); }
 .m-group-panel{ display:none; padding:0 8px 16px 8px; }
 .m-group.is-open .m-group-panel{ display:block; }
 .m-group-panel a{

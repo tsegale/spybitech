@@ -19,13 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ---------- mobile accordion groups ---------- */
-  document.querySelectorAll('.m-group-head').forEach(function (head) {
-    head.addEventListener('click', function () {
-      var group = head.closest('.m-group');
+  document.querySelectorAll('.m-group-toggle').forEach(function (toggle) {
+    toggle.addEventListener('click', function () {
+      var group = toggle.closest('.m-group');
       var wasOpen = group.classList.contains('is-open');
       document.querySelectorAll('.m-group.is-open').forEach(function (g) { g.classList.remove('is-open'); });
       if (!wasOpen) group.classList.add('is-open');
     });
+  });
+  mobileNav.querySelectorAll('.m-group-link').forEach(function (link) {
+    link.addEventListener('click', closeMobile);
   });
 
   /* ---------- desktop dropdown: click + keyboard support (hover already in CSS) ---------- */
@@ -36,10 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     link.addEventListener('click', function (e) {
       if (window.innerWidth <= 1180) return;
-      e.preventDefault();
       var isOpen = item.classList.contains('is-open');
-      document.querySelectorAll('.category-nav .nav-item.is-open').forEach(function (i) { i.classList.remove('is-open'); });
-      if (!isOpen) item.classList.add('is-open');
+      if (!isOpen) {
+        e.preventDefault();
+        document.querySelectorAll('.category-nav .nav-item.is-open').forEach(function (i) { i.classList.remove('is-open'); });
+        item.classList.add('is-open');
+      }
     });
   });
 
