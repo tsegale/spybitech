@@ -2,7 +2,7 @@
    SPYBITECH INVESTMENTS CC — Design tokens
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root{
   /* brand */
@@ -25,8 +25,8 @@
   --status:      #1E8E5A;
 
   /* type */
-  --f-display: 'Space Grotesk', sans-serif;
-  --f-body:    'IBM Plex Sans', sans-serif;
+  --f-display: 'Plus Jakarta Sans', sans-serif;
+  --f-body:    'Inter', sans-serif;
   --f-mono:    'IBM Plex Mono', monospace;
 
   /* scale */
