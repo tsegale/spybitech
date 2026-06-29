@@ -64,19 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- smooth scroll for in-page anchors ---------- */
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href');
-      if (targetId.length < 2) return;
-      var target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
   /* ---------- inquiry form submission ---------- */
   var form = document.getElementById('inquiry-form');
   if (form) {

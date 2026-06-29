@@ -1130,3 +1130,102 @@ h1,h2,h3,h4{
   .partners-banner{ height:auto; padding:30px 0; }
   .partners-banner .pb-text{ position:relative; padding:0 24px; }
 }
+
+/* ============================================================
+   SERVICE PAGES — in-page sub-nav + anchored sections
+   ============================================================ */
+.svc-subnav{
+  background:var(--paper-raised);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:172px;
+  z-index:10;
+}
+.svc-subnav .container{
+  display:flex;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.svc-subnav .container::-webkit-scrollbar{ display:none; }
+.svc-subnav a{
+  font-family:var(--f-mono);
+  font-size:12px;
+  letter-spacing:.05em;
+  color:var(--slate);
+  padding:13px 20px;
+  white-space:nowrap;
+  border-bottom:2px solid transparent;
+  flex-shrink:0;
+  transition:color .14s ease, border-color .14s ease;
+}
+.svc-subnav a:hover{ color:var(--navy); border-bottom-color:var(--navy); }
+
+.svc-section{
+  padding:72px 0;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:240px;
+}
+.svc-section.alt{ background:var(--paper-raised); }
+.svc-section:last-of-type{ border-bottom:none; }
+.svc-section-grid{
+  display:grid;
+  grid-template-columns:0.9fr 1.1fr;
+  gap:64px;
+  align-items:start;
+}
+.svc-section-copy h2{
+  font-size:clamp(22px,2.6vw,30px);
+  margin-top:12px;
+  line-height:1.18;
+}
+.svc-section-copy p{
+  color:var(--slate);
+  font-size:15.5px;
+  margin-top:14px;
+  line-height:1.6;
+}
+.svc-section-copy .btn{ margin-top:24px; }
+
+.svc-list{
+  border:1px solid var(--line);
+  border-top:2px solid var(--navy);
+}
+.svc-list-item{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--line);
+}
+.svc-list-item:last-child{ border-bottom:none; }
+.svc-list-item > svg{
+  width:15px; height:15px;
+  color:var(--status);
+  flex-shrink:0;
+  margin-top:3px;
+}
+.svc-list-item-text h4{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:4px;
+  color:var(--ink);
+}
+.svc-list-item-text p{
+  font-size:13px;
+  color:var(--slate);
+  margin:0;
+  line-height:1.5;
+}
+
+@media (max-width:1180px){
+  .svc-subnav{ top:124px; }
+  .svc-section{ scroll-margin-top:180px; }
+}
+@media (max-width:900px){
+  .svc-section{ padding:48px 0; scroll-margin-top:150px; }
+  .svc-section-grid{ grid-template-columns:1fr; gap:28px; }
+}
+@media (max-width:760px){
+  .svc-subnav{ top:88px; }
+  .svc-section{ scroll-margin-top:120px; }
+}
