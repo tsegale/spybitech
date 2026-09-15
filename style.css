@@ -25,9 +25,9 @@
   --status:      #1E8E5A;
 
   /* type */
-  --f-display: 'Plus Jakarta Sans', sans-serif;
-  --f-body:    'Inter', sans-serif;
-  --f-mono:    'IBM Plex Mono', monospace;
+  --f-display: Arial, sans-serif;
+  --f-body:    Arial, sans-serif;
+  --f-mono:    Arial, sans-serif;
 
   /* scale */
   --container: 1240px;
