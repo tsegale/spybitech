@@ -465,6 +465,17 @@ h1,h2,h3,h4{
    ============================================================ */
 .section{ padding:84px 0; }
 .section.alt{ background:var(--paper-raised); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+/* home page promo banner */
+.promo-section{ padding:40px 0; }
+.promo-banner{
+  display:block;
+  border:1px solid var(--line);
+  overflow:hidden;
+  transition:opacity .15s ease;
+}
+.promo-banner:hover{ opacity:.92; }
+.promo-banner img{ width:100%; height:auto; display:block; }
 .section-head{
   display:flex;
   justify-content:space-between;
