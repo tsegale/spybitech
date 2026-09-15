@@ -993,7 +993,13 @@ h1,h2,h3,h4{
   position:absolute; inset:0;
   background:linear-gradient(100deg, rgba(18,19,55,.92) 0%, rgba(18,19,55,.82) 45%, rgba(18,19,55,.58) 100%);
 }
-.page-hero .container{ position:relative; z-index:2; padding:54px 28px 50px; }
+.page-hero .container{
+  position:relative; z-index:2; padding:54px 28px 50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
 .page-hero h1{ color:#fff; font-size:clamp(28px,3.4vw,40px); margin:14px 0 10px; }
 .page-hero p{ color:#D4D6EE; max-width:520px; font-size:15.5px; margin:0; }
 .page-hero .tag-row{ margin-top:18px; }
