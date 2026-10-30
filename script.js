@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    SPYBITECH  -  site behaviour
    Navigation, hero slider, product catalogue, quote list,
    domain search, counters and scroll motion.
@@ -640,7 +640,7 @@
   }
 
   function initMotion() {
-    var targets = $$('.reveal, .pkg, .step, .mail-offer, [data-count]');
+    var targets = $$('.reveal, .pkg, .step, .mail-offer, .ap-card, [data-count]');
     if (!('IntersectionObserver' in window) || reduceMotion) {
       targets.forEach(function (t) { t.classList.add('in'); if (t.hasAttribute('data-count')) countUp(t); });
       return;
@@ -676,6 +676,75 @@
     });
   }
 
+
+  /* ============================================================
+     CLIENT WEBSITES SHOWCASE (home)
+     ============================================================ */
+  function initShowcase() {
+    var root = $('[data-showcase]'); if (!root) return;
+    var tabs = $$('.sc-tab', root), shots = $$('.sc-shot', root);
+    var hostEl = $('[data-sc-host]', root), link = $('[data-sc-link]', root);
+    var cur = 0, timer = null, DUR = 6000, visible = false;
+    root.style.setProperty('--sc-dur', DUR + 'ms');
+    function show(i) {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach(function (t, n) {
+        var on = n === cur;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (on) { var bar = $('.sc-prog i', t); if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; } }
+      });
+      shots.forEach(function (s, n) { s.classList.toggle('is-active', n === cur); });
+      if (hostEl) hostEl.textContent = tabs[cur].getAttribute('data-host');
+      if (link) link.href = tabs[cur].getAttribute('data-url');
+    }
+    function play() { stop(); if (reduceMotion || !visible) return; timer = setInterval(function () { show(cur + 1); }, DUR); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    tabs.forEach(function (t, n) { t.addEventListener('click', function () { show(n); play(); }); });
+    root.addEventListener('mouseenter', function () { root.classList.add('is-paused'); stop(); });
+    root.addEventListener('mouseleave', function () { root.classList.remove('is-paused'); show(cur); play(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) { show(cur); play(); } else stop(); }, { threshold: 0.25 }).observe(root);
+    } else { visible = true; play(); }
+    if (reduceMotion) root.classList.add('is-paused');
+  }
+
+  /* ============================================================
+     PROJECTS FILTER
+     ============================================================ */
+  function initWorkFilter() {
+    var bar = $('.wp-filter'), grid = $('#wpGrid'); if (!bar || !grid) return;
+    var cards = $$('.wp-card', grid);
+    $$('[data-filter]', bar).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filter');
+        $$('[data-filter]', bar).forEach(function (x) { x.classList.toggle('is-active', x === b); });
+        cards.forEach(function (c, n) {
+          var show = f === 'all' || c.getAttribute('data-sector') === f;
+          c.classList.toggle('is-hidden', !show);
+          c.classList.remove('is-entering');
+          if (show && !reduceMotion) { void c.offsetWidth; c.style.animationDelay = (n % 3) * 60 + 'ms'; c.classList.add('is-entering'); }
+          if (show) c.classList.add('in');
+        });
+      });
+    });
+  }
+
+  /* ============================================================
+     WEBSITE PACKAGES: pay once / payment plan
+     ============================================================ */
+  function initPayToggle() {
+    $$('.pay-toggle').forEach(function (tg) {
+      var sec = tg.closest('section'), grid = sec && $('.wpk-grid', sec); if (!grid) return;
+      $$('[data-pay-set]', tg).forEach(function (b) {
+        b.addEventListener('click', function () {
+          $$('[data-pay-set]', tg).forEach(function (x) { var on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+          grid.setAttribute('data-pay-mode', b.getAttribute('data-pay-set'));
+        });
+      });
+    });
+  }
+
   /* ============================================================ */
   document.addEventListener('DOMContentLoaded', function () {
     injectShell();
@@ -686,6 +755,9 @@
     initHero();
     initDomains();
     initInquiry();
+    initShowcase();
+    initWorkFilter();
+    initPayToggle();
     initMotion();
   });
 })();
