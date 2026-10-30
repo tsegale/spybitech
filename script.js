@@ -745,6 +745,22 @@
     });
   }
 
+
+  /* ============================================================
+     HOME: WHAT WE DO accordion
+     ============================================================ */
+  function initWhatWeDo() {
+    var panels = $$('[data-wwd]'); if (!panels.length) return;
+    var wide = window.matchMedia('(min-width: 901px)');
+    function open(p) { panels.forEach(function (x) { x.classList.toggle('is-open', x === p); }); }
+    panels.forEach(function (p) {
+      p.addEventListener('mouseenter', function () { if (wide.matches) open(p); });
+      p.addEventListener('focus', function () { open(p); });
+      // on touch screens the first tap opens the panel, the second follows the link
+      p.addEventListener('click', function (e) { if (wide.matches && !p.classList.contains('is-open')) { e.preventDefault(); open(p); } });
+    });
+  }
+
   /* ============================================================ */
   document.addEventListener('DOMContentLoaded', function () {
     injectShell();
@@ -756,6 +772,7 @@
     initDomains();
     initInquiry();
     initShowcase();
+    initWhatWeDo();
     initWorkFilter();
     initPayToggle();
     initMotion();
