@@ -1953,3 +1953,93 @@ main section[id], section[id]{ scroll-margin-top:calc(var(--hdr,172px) + 12px); 
   .sc-shot{ transition:none; }
   .ap-specs .bar i{ transition:none; width:var(--w); }
 }
+
+/* ============================================================
+   HOME: WHAT WE DO (image accordion)
+   ============================================================ */
+.wwd{ display:flex; gap:10px; height:440px; }
+.wwd-panel{
+  position:relative; flex:1 1 0; min-width:0; overflow:hidden; border-radius:var(--radius-m);
+  background:var(--navy-900); color:#fff; text-decoration:none; isolation:isolate;
+  transition:flex-grow .65s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+}
+.wwd-panel.is-open{ flex-grow:2.7; box-shadow:0 24px 50px -30px rgba(28,29,73,.7); }
+.wwd-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; transform:scale(1.08); transition:transform 1.4s ease; }
+.wwd-panel.is-open .wwd-img{ transform:scale(1); }
+.wwd-panel::before{ content:''; position:absolute; inset:0; z-index:-1; background:rgba(18,19,55,.38); transition:background .5s ease; }
+.wwd-panel.is-open::before{ background:rgba(18,19,55,.1); }
+.wwd-num{ position:absolute; top:18px; left:20px; font-size:13px; font-weight:800; letter-spacing:.1em; color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.45); }
+.wwd-label{
+  position:absolute; left:18px; right:18px; bottom:20px; display:flex; align-items:center; gap:10px;
+  font-size:16px; font-weight:800; line-height:1.2; text-shadow:0 1px 10px rgba(0,0,0,.55);
+  transition:opacity .3s ease, transform .4s ease;
+}
+.wwd-label svg{ width:38px; height:38px; padding:9px; flex-shrink:0; background:var(--red); border-radius:var(--radius-s); color:#fff; }
+.wwd-panel.is-open .wwd-label{ opacity:0; transform:translateY(10px); pointer-events:none; }
+.wwd-card{
+  position:absolute; left:18px; bottom:18px; width:min(360px, calc(100% - 36px));
+  background:#fff; color:var(--ink); border-radius:var(--radius-m); padding:20px 22px 18px;
+  border-top:3px solid var(--red); box-shadow:0 18px 40px -20px rgba(10,11,35,.6);
+  display:flex; flex-direction:column; gap:8px;
+  opacity:0; transform:translateY(24px); transition:opacity .35s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
+}
+.wwd-panel.is-open .wwd-card{ opacity:1; transform:none; transition-delay:.2s; pointer-events:auto; }
+.wwd-card strong{ font-size:20px; color:var(--navy-900); }
+.wwd-text{ font-size:14px; color:var(--slate); line-height:1.5; }
+.wwd-card ul{ list-style:none; margin:4px 0 2px; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+.wwd-card li{ font-size:12px; font-weight:700; color:var(--navy-900); background:var(--paper); border:1px solid var(--line); padding:4px 9px; border-radius:2px; }
+.wwd-go{ display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:800; color:var(--red); margin-top:4px; }
+.wwd-go svg{ width:15px; height:15px; transition:transform .2s ease; }
+.wwd-panel:hover .wwd-go svg{ transform:translateX(4px); }
+
+/* websites panel: real client sites as floating browser windows */
+.wwd-web{ background:var(--navy); }
+.wwd-web::before{ background:transparent !important; }
+.wwd-collage{ position:absolute; inset:0; z-index:-2; overflow:hidden; }
+.wwd-shot{
+  position:absolute; width:300px; background:#fff; border-radius:6px; overflow:hidden;
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.55); transition:transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.wwd-shot .bar{ display:flex; gap:4px; padding:6px 8px; background:#EEF0F6; }
+.wwd-shot .bar i{ width:6px; height:6px; border-radius:50%; background:#C9CDDA; }
+.wwd-shot img{ display:block; width:100%; aspect-ratio:8/5; object-fit:cover; object-position:top; }
+.wwd-shot.s0{ top:28px; left:24px; transform:rotate(-4deg); animation:wwdfloat 7s ease-in-out infinite; }
+.wwd-shot.s1{ top:96px; left:150px; transform:rotate(3deg); animation:wwdfloat 8s ease-in-out -2s infinite; z-index:1; }
+.wwd-shot.s2{ top:190px; left:40px; transform:rotate(-1deg); animation:wwdfloat 9s ease-in-out -4s infinite; }
+.wwd-web.is-open .wwd-shot.s0{ left:40%; top:24px; }
+.wwd-web.is-open .wwd-shot.s1{ left:58%; top:120px; }
+.wwd-web.is-open .wwd-shot.s2{ left:44%; top:220px; }
+@keyframes wwdfloat{ 0%,100%{ translate:0 0; } 50%{ translate:0 -8px; } }
+
+/* other services */
+.wwd-more{ display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.wwd-more .lbl{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--slate-soft); font-weight:700; margin-right:6px; }
+.wwd-more a{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 14px; background:#fff; border:1px solid var(--line-strong);
+  border-radius:22px; font-size:13.5px; font-weight:700; color:var(--navy-900); transition:border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.wwd-more a svg{ width:15px; height:15px; color:var(--red); }
+.wwd-more a:hover{ border-color:var(--navy); color:var(--navy); transform:translateY(-2px); }
+
+@media (max-width:900px){
+  .wwd{ height:auto; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; scrollbar-width:none; }
+  .wwd::-webkit-scrollbar{ display:none; }
+  .wwd-panel, .wwd-panel.is-open{ flex:0 0 min(82%, 380px); height:340px; scroll-snap-align:start; }
+  .wwd-panel::before{ background:rgba(18,19,55,.1); }
+  .wwd-label{ display:none; }
+  .wwd-card{ opacity:1; transform:none; pointer-events:auto; }
+  .wwd-img{ transform:none; }
+  .wwd-shot{ width:220px; }
+  .wwd-shot.s0, .wwd-web.is-open .wwd-shot.s0{ left:auto; right:-20px; top:14px; }
+  .wwd-shot.s1, .wwd-web.is-open .wwd-shot.s1{ left:auto; right:90px; top:40px; }
+  .wwd-shot.s2, .wwd-web.is-open .wwd-shot.s2{ display:none; }
+}
+@media (max-width:520px){
+  .wwd-more{ flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; padding-bottom:4px; }
+  .wwd-more::-webkit-scrollbar{ display:none; }
+  .wwd-more a{ flex-shrink:0; }
+  .wwd-more .lbl{ display:none; }
+  .wwd-card{ left:12px; bottom:12px; width:calc(100% - 24px); padding:16px 16px 14px; }
+}
+@media (prefers-reduced-motion: reduce){ .wwd-shot{ animation:none !important; } .wwd-panel, .wwd-img, .wwd-card{ transition:none !important; } }
